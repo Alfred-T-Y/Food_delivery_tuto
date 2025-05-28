@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_deliver/components/my_button.dart';
 import 'package:food_deliver/components/my_textfield.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -44,11 +45,11 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //logo
-          Icon(
-            Icons.lock_open_rounded,
-            size: 100,
-            color: Theme.of(context).colorScheme.inversePrimary,
-            ),
+          Container(
+            width: 200,
+            height: 200,
+            child: Lottie.asset('assets/log_reg.json'),
+          ),
 
           const SizedBox(height: 25),
 
@@ -97,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Text("Not a member?",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               SizedBox(width: 5,),

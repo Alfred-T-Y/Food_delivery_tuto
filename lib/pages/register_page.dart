@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_deliver/components/my_button.dart';
 import 'package:food_deliver/components/my_textfield.dart';
+import 'package:lottie/lottie.dart';
 
 class RegisterPage extends StatefulWidget {
 
@@ -46,11 +47,11 @@ class _RegisterPageState extends State<RegisterPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //logo
-          Icon(
-            Icons.lock_open_rounded,
-            size: 100,
-            color: Theme.of(context).colorScheme.inversePrimary,
-            ),
+          Container(
+            width: 200,
+            height: 200,
+            child: Lottie.asset('assets/log_reg.json'),
+          ),
 
           const SizedBox(height: 25),
 
