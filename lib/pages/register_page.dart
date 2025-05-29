@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_deliver/components/my_button.dart';
 import 'package:food_deliver/components/my_textfield.dart';
+import 'package:food_deliver/pages/home_page.dart';
 import 'package:lottie/lottie.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -37,6 +38,17 @@ class _RegisterPageState extends State<RegisterPage> {
     super.initState();
     // Écouter les changements de focussubmission
     focussubmission.addListener(submission);
+  }
+
+  //signup method
+  void signup(){
+    //authentification
+
+    //home page
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context)=> const HomePage(),)
+    );
   }
 
   @override
@@ -99,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
           //sign up button
           MyButton(
-            onTap: (){},
+            onTap: signup,
             text: "Sign up",
             ),
           SizedBox(height: 20,),

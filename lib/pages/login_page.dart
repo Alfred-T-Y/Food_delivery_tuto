@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_deliver/components/my_button.dart';
 import 'package:food_deliver/components/my_textfield.dart';
+import 'package:food_deliver/pages/home_page.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
@@ -35,6 +36,17 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     // Écouter les changements de focussubmission
     focussubmission.addListener(submission);
+  }
+
+  //login method
+  void login(){
+    //authentification
+
+    //home page
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context)=> const HomePage(),)
+    );
   }
 
   @override
@@ -88,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
 
           //sign in button
           MyButton(
-            onTap: (){},
+            onTap: login,
             text: "Log in",
             ),
           SizedBox(height: 20,),
