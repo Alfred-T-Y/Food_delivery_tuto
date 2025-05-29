@@ -45,10 +45,11 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //logo
-          Container(
+          Lottie.asset(
+            'assets/log_reg.json',
             width: 200,
             height: 200,
-            child: Lottie.asset('assets/log_reg.json'),
+            fit: BoxFit.contain,
           ),
 
           const SizedBox(height: 25),
