@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_deliver/components/settings_tile.dart';
 import 'package:food_deliver/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class SettingsPage extends StatelessWidget {
                 child: SettingsTile(
                   text: "Dark Mode", 
                   description: "Switch between light and dark mode", 
-                  icon: Icons.dark_mode
+                  icon: FontAwesomeIcons.moon
                 ),
               ),
               CupertinoSwitch(
@@ -51,7 +52,7 @@ class SettingsPage extends StatelessWidget {
                 child: SettingsTile(
                   text: "Delete account", 
                   description: "All your datas would be lost", 
-                  icon: Icons.delete,
+                  icon: FontAwesomeIcons.trash,
                   onTap: () {
                     
                   },

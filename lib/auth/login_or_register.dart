@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_deliver/pages/login_page.dart';
-import 'package:food_deliver/pages/register_page.dart';
+import 'package:food_deliver/pages/client/login_page.dart';
+import 'package:food_deliver/pages/client/register_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});

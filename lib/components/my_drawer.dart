@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_deliver/components/my_drawer_tile.dart';
 import 'package:food_deliver/pages/settings_page.dart';
 
@@ -26,7 +27,7 @@ class MyDrawer extends StatelessWidget {
 
           MyDrawerTile(
             text: "                     Home", 
-            icon: Icons.home, 
+            icon: FontAwesomeIcons.house, 
             onTap: (){
               Navigator.pop(context);
             }
@@ -35,7 +36,7 @@ class MyDrawer extends StatelessWidget {
 
           MyDrawerTile(
             text: "                     Settings", 
-            icon: Icons.settings, 
+            icon: FontAwesomeIcons.gear, 
             onTap: (){
               Navigator.pop(context);
               Navigator.push(
@@ -52,7 +53,7 @@ class MyDrawer extends StatelessWidget {
 
           MyDrawerTile(
             text: "                     Log out", 
-            icon: Icons.logout, 
+            icon: FontAwesomeIcons.rightFromBracket, 
             onTap: (){}
           ),
           SizedBox(height: 10,),

@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_deliver/auth/deliver_login_or_register.dart';
 import 'package:food_deliver/components/my_button.dart';
 import 'package:food_deliver/components/my_textfield.dart';
-import 'package:food_deliver/pages/home_page.dart';
+import 'package:food_deliver/pages/client/home_page.dart';
 import 'package:lottie/lottie.dart';
 
-class RegisterPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
+  final void Function()? onTap;
 
-  final void Function ()? onTap;
-  const RegisterPage({super.key, required this.onTap});
+  const LoginPage({super.key, required this.onTap});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
 
   final emailController = TextEditingController();
+  final nameController = TextEditingController();
   final passwordController = TextEditingController();
-  final confirmPassWordController = TextEditingController();
   final emailFocus = FocusNode();
+  final nameFocus = FocusNode();
   final passWordFocus = FocusNode();
-  final confirmPassWordFocus = FocusNode();
   final focussubmission = FocusNode();
   final formkey = GlobalKey<FormState>();
 
@@ -40,8 +42,8 @@ class _RegisterPageState extends State<RegisterPage> {
     focussubmission.addListener(submission);
   }
 
-  //signup method
-  void signup(){
+  //login method
+  void login(){
     //authentification
 
     //home page
@@ -54,6 +56,24 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title:Row(
+          children: [
+            Spacer(),
+            IconButton(
+              icon: FaIcon(FontAwesomeIcons.motorcycle),
+              color: Theme.of(context).colorScheme.inversePrimary,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context)=> const DeliverLoginOrRegister())
+                );
+              },
+            ),
+            SizedBox(width: 5,)
+          ],
+        ),
+      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
           //app slogan
           Text(
-            "Create a new account",
+            "Food Delivery App",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
@@ -87,8 +107,18 @@ class _RegisterPageState extends State<RegisterPage> {
             obscureText: false, 
             controller: emailController,
             focusNode: emailFocus,
-            focusnext: passWordFocus,
+            focusnext: nameFocus,
             ),
+          SizedBox(height: 10,),
+
+          //Name 
+          MyTextfield(
+            hintText: "Enter your name", 
+            obscureText: false, 
+            controller: nameController,
+            focusNode: nameFocus,
+            focusnext: passWordFocus,
+          ),
           SizedBox(height: 10,),
 
           //password textfield
@@ -97,30 +127,22 @@ class _RegisterPageState extends State<RegisterPage> {
             obscureText: true, 
             controller: passwordController,
             focusNode: passWordFocus,
-            focusnext: confirmPassWordFocus,
             ),
           SizedBox(height: 10,),
 
-          //confirm password textfield
-          MyTextfield(
-            hintText: "Confirm the password", 
-            obscureText: true, 
-            controller: confirmPassWordController,
-            focusNode: confirmPassWordFocus,),
-          SizedBox(height: 10,),
-
-          //sign up button
+          //sign in button
           MyButton(
-            onTap: signup,
-            text: "Sign up",
+            onTap: login,
+            text: "Log in",
+            color: Colors.blueAccent,
             ),
           SizedBox(height: 20,),
 
-          //Log in
+          //register now
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Already have a account?",
+              Text("Not a member?",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -128,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(width: 5,),
               GestureDetector(
                 onTap: widget.onTap,
-                child: Text("Log in",
+                child: Text("Register now",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
                     fontWeight: FontWeight.bold,

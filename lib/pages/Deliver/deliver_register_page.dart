@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_deliver/components/my_button.dart';
 import 'package:food_deliver/components/my_textfield.dart';
-import 'package:food_deliver/pages/home_page.dart';
+import 'package:food_deliver/pages/Deliver/deliver_home_page.dart';
 import 'package:lottie/lottie.dart';
 
-class LoginPage extends StatefulWidget {
-  final void Function()? onTap;
+class DeliverRegisterPage extends StatefulWidget {
 
-  const LoginPage({super.key, required this.onTap});
+  final void Function ()? onTap;
+  const DeliverRegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<DeliverRegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<DeliverRegisterPage> {
 
   final emailController = TextEditingController();
+  final nameController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPassWordController = TextEditingController();
   final emailFocus = FocusNode();
+  final nameFocus = FocusNode();
   final passWordFocus = FocusNode();
+  final confirmPassWordFocus = FocusNode();
   final focussubmission = FocusNode();
   final formkey = GlobalKey<FormState>();
 
@@ -38,27 +43,42 @@ class _LoginPageState extends State<LoginPage> {
     focussubmission.addListener(submission);
   }
 
-  //login method
-  void login(){
+  //signup method
+  void signup(){
     //authentification
 
     //home page
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context)=> const HomePage(),)
+      MaterialPageRoute(builder: (context)=> const DeliverHomePage(),)
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+        title:Row(
+          children: [
+            Spacer(),
+            IconButton(
+              icon: FaIcon(FontAwesomeIcons.user),
+              color: Theme.of(context).colorScheme.inversePrimary,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            SizedBox(width: 5,)
+          ],
+        ),
+      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //logo
           Lottie.asset(
-            'assets/log_reg.json',
+            'assets/deliver_log_reg.json',
             width: 200,
             height: 200,
             fit: BoxFit.contain,
@@ -68,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
 
           //app slogan
           Text(
-            "Food Delivery App",
+            "Create a new account",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
@@ -95,21 +115,41 @@ class _LoginPageState extends State<LoginPage> {
             obscureText: true, 
             controller: passwordController,
             focusNode: passWordFocus,
+            focusnext: confirmPassWordFocus,
             ),
           SizedBox(height: 10,),
 
-          //sign in button
+          //Name of fastfood
+          MyTextfield(
+            hintText: "Enter the name of your restaurant", 
+            obscureText: false, 
+            controller: nameController,
+            focusNode: nameFocus,
+            focusnext: passWordFocus,
+          ),
+          SizedBox(height: 10,),
+
+          //confirm password textfield
+          MyTextfield(
+            hintText: "Confirm the password", 
+            obscureText: true, 
+            controller: confirmPassWordController,
+            focusNode: confirmPassWordFocus,),
+          SizedBox(height: 10,),
+
+          //sign up button
           MyButton(
-            onTap: login,
-            text: "Log in",
+            onTap: signup,
+            text: "Sign up",
+            color: Colors.greenAccent,
             ),
           SizedBox(height: 20,),
 
-          //register now
+          //Log in
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Not a member?",
+              Text("Already have a account?",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -117,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(width: 5,),
               GestureDetector(
                 onTap: widget.onTap,
-                child: Text("Register now",
+                child: Text("Log in",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
                     fontWeight: FontWeight.bold,
